@@ -1,0 +1,352 @@
+/* ========================================== */
+/* CONFIGURAÇÕES GERAIS E CORES */
+/* ========================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #0a0a0a;
+    color: #f5f5f5;
+    scroll-behavior: smooth;
+    padding-top: 90px; /* Compensa perfeitamente o cabeçalho fixo no computador */
+}
+
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+    color: #D4AF37;
+}
+
+/* ========================================== */
+/* CABEÇALHO FIXO COM ANIMAÇÃO DE ROLAGEM */
+/* ========================================== */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 8%;
+    background-color: #121212;
+    border-bottom: 1px solid #D4AF37;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    transition: transform 0.4s ease-in-out;
+    transform: translateY(0);
+}
+
+/* Classe acionada via JS quando rola para baixo */
+.header.oculto {
+    transform: translateY(-100%);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo-oficial {
+    max-height: 50px;
+    width: auto;
+    object-fit: contain;
+}
+
+.nav {
+    display: flex;
+    gap: 20px;
+}
+
+.nav a {
+    color: #f5f5f5;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 0.95rem;
+    transition: color 0.3s;
+}
+
+.nav a:hover {
+    color: #D4AF37;
+}
+
+/* ========================================== */
+/* AJUSTE EXCLUSIVO PARA CELULAR (SEM SOBREPOSIÇÃO) */
+/* ========================================== */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column; /* Empilha a logo em cima e o menu embaixo de forma limpa */
+        justify-content: center;
+        padding: 12px 4%;
+        gap: 10px;
+    }
+
+    .logo-oficial {
+        max-height: 42px;
+    }
+
+    .nav {
+        justify-content: center;
+        gap: 15px;
+        width: 100%;
+    }
+
+    .nav a {
+        font-size: 0.85rem;
+    }
+
+    body {
+        padding-top: 110px; /* Espaço maior no celular para acomodar a logo empilhada sem cortar o banner */
+    }
+}
+
+/* ========================================== */
+/* BANNER PRINCIPAL */
+/* ========================================== */
+.hero {
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('https://images.unsplash.com/photo-1604654894610-df63bc536371?q=80&w=1200') center/cover;
+    padding: 0 20px;
+}
+
+.hero h1 {
+    font-size: 2.8rem;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+    color: #cccccc;
+}
+
+/* ========================================== */
+/* BOTÕES DOURADOS */
+/* ========================================== */
+.btn-primary, .btn-card {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 22px;
+    background: linear-gradient(135deg, #C5A059 0%, #D4AF37 50%, #AA7C11 100%);
+    color: #000000;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.btn-primary:hover, .btn-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+}
+
+/* ========================================== */
+/* SEÇÃO SOBRE MIM */
+/* ========================================== */
+.sobre {
+    padding: 80px 8%;
+    background-color: #121212;
+}
+
+.sobre-container {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.sobre-img img {
+    width: 300px;
+    height: 350px;
+    object-fit: cover;
+    object-position: top center;
+    border-radius: 8px;
+    border: 2px solid #D4AF37;
+}
+
+.sobre-texto {
+    flex: 1;
+    min-width: 280px;
+}
+
+.sobre-texto h2 {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+}
+
+.sobre-texto p {
+    line-height: 1.8;
+    color: #cccccc;
+}
+
+/* ========================================== */
+/* CATÁLOGO EM CARROSSEL DESLIZANTE */
+/* ========================================== */
+.catalogo {
+    padding: 80px 5%;
+    text-align: center;
+}
+
+.catalogo h2 {
+    font-size: 2.4rem;
+}
+
+.subtitulo {
+    color: #aaaaaa;
+    margin-bottom: 30px;
+}
+
+.carrossel-container {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 20px 10px 30px 10px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+.carrossel-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.carrossel-container::-webkit-scrollbar-track {
+    background: #141414;
+    border-radius: 10px;
+}
+
+.carrossel-container::-webkit-scrollbar-thumb {
+    background: #D4AF37;
+    border-radius: 10px;
+}
+
+.card {
+    flex: 0 0 280px;
+    scroll-snap-align: center;
+    background-color: #121212;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #222;
+    transition: border-color 0.3s;
+    text-align: left;
+}
+
+.card:hover {
+    border-color: #D4AF37;
+}
+
+.card img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+}
+
+.card-info {
+    padding: 20px;
+}
+
+.card-info h3 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    color: #ffffff;
+}
+
+.preco {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #D4AF37;
+    margin-bottom: 10px;
+}
+
+.preco small {
+    font-size: 0.75rem;
+    color: #aaaaaa;
+    font-weight: 400;
+}
+
+.card-info p {
+    font-size: 0.85rem;
+    color: #aaaaaa;
+    margin-bottom: 18px;
+    height: 40px;
+}
+
+/* ========================================== */
+/* SEÇÃO DE CONTATO E LOCALIZAÇÃO */
+/* ========================================== */
+.contato-section {
+    background-color: #121212;
+    padding: 60px 8%;
+    border-top: 1px solid #222;
+    text-align: center;
+}
+
+.contato-container h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.endereco-box {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 1.1rem;
+    color: #cccccc;
+    margin-bottom: 30px;
+}
+
+.endereco-box i {
+    color: #D4AF37;
+    font-size: 1.3rem;
+}
+
+.botoes-contato {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.btn-rede {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 25px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: transform 0.3s, background-color 0.3s;
+    border: 1px solid #D4AF37;
+    color: #D4AF37;
+    background-color: transparent;
+}
+
+.btn-rede:hover {
+    background-color: #D4AF37;
+    color: #000;
+    transform: translateY(-3px);
+}
+
+.btn-rede i {
+    font-size: 1.2rem;
+}
+
+/* ========================================== */
+/* RODAPÉ FINAL */
+/* ========================================== */
+.footer {
+    padding: 25px;
+    text-align: center;
+    background-color: #050505;
+    border-top: 1px solid #1a1a1a;
+    color: #777;
+    font-size: 0.85rem;
+}
